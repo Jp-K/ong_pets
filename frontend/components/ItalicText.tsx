@@ -10,7 +10,7 @@ interface Props {
 const StyledText: React.FC<Props> = ({ children, style }) => {
 
     const [loaded] = useFonts({
-        Rubik: require('../assets/Fonts/Rubik-Light.ttf'),
+        RubikItalic: require('../assets/Fonts/Rubik-MediumItalic.ttf'),
     });
     if (!loaded) {
         return null;
@@ -21,7 +21,7 @@ const StyledText: React.FC<Props> = ({ children, style }) => {
 
 const styles = StyleSheet.create({
     text: {
-        fontFamily: 'Rubik'
+        fontFamily: 'RubikItalic'
     },
 });
 
