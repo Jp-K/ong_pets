@@ -7,7 +7,7 @@ interface Props {
     style: StyleProp<TextStyle>;
 }
 
-const StyledText: React.FC<Props> = ({ children, style }) => {
+const ItalicText: React.FC<Props> = ({ children, style }) => {
 
     const [loaded] = useFonts({
         RubikItalic: require('../assets/Fonts/Rubik-MediumItalic.ttf'),
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default StyledText;
+export default ItalicText;

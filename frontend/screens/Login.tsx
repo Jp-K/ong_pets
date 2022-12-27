@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Pressable } from 'react-native';
 import StyledText from "../components/StyledText";
-
+import BorderPlaceholderInput from "../components/BorderPlaceholderInput";
 interface Props {
     onLogin: (username: string, password: string) => void;
 }
@@ -10,14 +10,15 @@ const Login: React.FC<Props> = ({ onLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+
     return (
         <View style={styles.container}>
-            <TextInput
+            <BorderPlaceholderInput
                 style={styles.input}
                 placeholder="Email"
                 value={username}
                 onChangeText={setUsername} />
-            <TextInput
+            <BorderPlaceholderInput
                 style={styles.input}
                 placeholder="Senha"
                 secureTextEntry={true}
