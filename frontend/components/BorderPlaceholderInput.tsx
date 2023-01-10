@@ -4,7 +4,7 @@ import StyledText from "./StyledText";
 import {useFonts} from "expo-font";
 
 
-const BorderPlaceholderInput: (props: any) => JSX.Element = (props) => {
+const BorderPlaceholderInput: (props: any, ref: any) => JSX.Element = (props, ref) => {
 
     // @ts-ignore
     const { placeholder, style, onChange, ...rest } = props;
