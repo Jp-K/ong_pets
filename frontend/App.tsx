@@ -6,10 +6,11 @@ import Login from './screens/Login';
 //import ItalicText from "./components/ItalicText";
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Toast from 'react-native-toast-message';
 
 export default function App() {
 
-  const pb = new PocketBase('http://192.168.1.9:8090');
+  const pb = new PocketBase('http://192.168.1.11:8090');
 
   pb.autoCancellation(false);
 
@@ -18,17 +19,23 @@ export default function App() {
   // @ts-ignore
   const LoginScreen = ({navigation}) => {
 
-    const handleLogin = async (username: string, password: string) => {
+    const handleLogin = async (email: string, password: string) => {
 
       await pb.collection('users').authWithPassword(
-        username,
+        email,
         password,
       ).then((data) => {
         if (pb.authStore.isValid) {
-          navigation.navigate('logged', {name: username})
+          console.log(data)
+          navigation.navigate('logged', {name: data.record.name})
         }
-      }).catch((err) => {
+      }).catch((err: DOMException) => {
         console.log(err);
+        Toast.show({
+          type: 'error',
+          text1: 'Email ou senha inválidos',
+          text2: err.message
+        });
       });
     };
 
@@ -44,6 +51,7 @@ export default function App() {
   }
 
   return (
+    <>
     <NavigationContainer>
       <Stack.Navigator 
       screenOptions={{ headerShown: false }}
@@ -59,6 +67,8 @@ export default function App() {
           />
       </Stack.Navigator>
     </NavigationContainer>
+    <Toast />
+    </>
   );
 }
 
